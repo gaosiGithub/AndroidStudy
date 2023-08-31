@@ -1,0 +1,86 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion rootProject.ext.app_android.compileSdkVersion
+    buildToolsVersion rootProject.ext.app_android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.gaosi.moduledemo"
+        minSdkVersion rootProject.ext.app_android.minSdkVersion
+        targetSdkVersion rootProject.ext.app_android.targetSdkVersion
+        versionCode rootProject.ext.app_android.versionCode
+        versionName rootProject.ext.app_android.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.core:core:1.5.0'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs')
+    implementation thirdDependency.com_google_android_material_material
+    implementation thirdDependency.androidx_constraintlayout_constraintlayout
+    implementation thirdDependency.androidx_lifecycle_lifecycle_runtime_ktx
+    implementation thirdDependency.androidx_lifecycle_lifecycle_viewmodel_ktx
+    implementation thirdDependency.androidx_activity_activity_ktx
+
+    implementation thirdDependency.org_jetbrains_kotlin_kotlin_stdlib
+    debugImplementation thirdDependency.com_squareup_leakcanary
+
+    implementation thirdDependency.com_google_dagger_hilt
+    kapt thirdDependency.com_google_dagger_hilt_kapt
+
+    implementation thirdDependency.androidx_room_room_runtime
+    implementation thirdDependency.androidx_room_room_ktx
+    kapt thirdDependency.androidx_room_room_compiler
+
+    implementation(project(":module_base"))
+
+    if (complieModuleHilt) {
+        implementation(project(":module_hilt"))
+    }
+    if (complieModuleMasterUi) {
+        implementation(project(":module_master_ui"))
+    }
+    if (complieModuleJetpack) {
+        implementation(project(":module_jetpack"))
+    }
+    if (complieModuleDesignMode) {
+        implementation(project(":module_design_mode"))
+    }
+
+}

@@ -1,0 +1,36 @@
+ext {
+    complieModuleHilt = true
+    complieModuleMasterUi = true
+    complieModuleJetpack = true
+    complieModuleDesignMode = true
+
+    app_android = [
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.2",
+
+            minSdkVersion    : 21,
+            targetSdkVersion : 30,
+            versionCode      : 1000000000,
+            versionName      : "1.0.0",
+            hikMavenUrl      : "http://af.hikvision.com.cn:80/artifactory/maven-avi-release",
+    ]
+    thirdDependency = [
+            androidx_appcompat_appcompat              : "androidx.appcompat:appcompat:1.3.1",
+            com_google_android_material_material      : "com.google.android.material:material:1.4.0",
+            androidx_constraintlayout_constraintlayout: "androidx.constraintlayout:constraintlayout:2.1.1",
+            androidx_lifecycle_lifecycle_runtime_ktx  : "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1",
+            androidx_lifecycle_lifecycle_viewmodel_ktx: "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
+            androidx_activity_activity_ktx            : "androidx.activity:activity-ktx:1.2.3",
+            org_jetbrains_kotlin_kotlin_stdlib        : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            androidx_core_core_ktx                    : "androidx.core:core:1.5.0",
+            com_google_code_gson_gson                 : "com.google.code.gson:gson:2.8.7",
+            com_google_dagger_hilt                    : "com.google.dagger:hilt-android:$hilt_version",
+            com_google_dagger_hilt_kapt               : "com.google.dagger:hilt-android-compiler:$hilt_version",
+            com_squareup_leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.9.1",
+            androidx_room_room_runtime                : "androidx.room:room-runtime:2.3.0",
+            androidx_room_room_compiler               : "androidx.room:room-compiler:2.3.0",
+            androidx_room_room_ktx                    : "androidx.room:room-ktx:2.3.0",
+            androidx_navigation_fragment_ktx          : "androidx.navigation:navigation-fragment-ktx:2.3.0",
+            androidx_navigation_ui_ktx                : "androidx.navigation:navigation-ui-ktx:2.3.0"
+    ]
+}
